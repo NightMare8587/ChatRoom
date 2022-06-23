@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.chatroom.Home.Frags.MyAccountFragment;
-import com.example.chatroom.Home.Frags.PostsFragment;
+import com.example.chatroom.Home.Frags.Posts.PostsFragment;
 import com.example.chatroom.Home.Frags.RoomsFragment;
 
 class MyAdapter extends FragmentPagerAdapter {
