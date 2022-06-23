@@ -53,7 +53,8 @@ public class HomeScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     totalOnlineUsers.setText("" + snapshot.getChildrenCount() + " Online Users");
-                }
+                }else
+                    totalOnlineUsers.setText("No User Available");
             }
 
             @Override
@@ -99,7 +100,8 @@ public class HomeScreen extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     if(snapshot.exists()){
                                         totalOnlineUsers.setText("" + snapshot.getChildrenCount() + " Online Users");
-                                    }
+                                    }else
+                                        totalOnlineUsers.setText("No User Available");
                                 }
 
                                 @Override

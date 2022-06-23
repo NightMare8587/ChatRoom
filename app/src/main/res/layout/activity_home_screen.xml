@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:text="TextView"
+        android:text="No User Available"
         android:textColor="#4DDA53"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tabLayoutHomeScreen"
