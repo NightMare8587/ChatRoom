@@ -60,9 +60,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.Holder> {
             if(Integer.parseInt(totalUsers.get(position)) == Integer.parseInt(maxUsers.get(position))){
                 Toast.makeText(click.getContext(), "Room is Full Right Now", Toast.LENGTH_SHORT).show();
             }else{
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID.get(position)).child("RoomUsers");
-                String time = System.currentTimeMillis() + "";
                 FirebaseAuth auth = FirebaseAuth.getInstance();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID.get(position)).child("RoomUsers");
+                String time = auth.getUid();
                 SharedPreferences sharedPreferences = click.getContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                 databaseReference.child(time).child("authID").setValue(auth.getUid());
                 databaseReference.child(time).child("name").setValue(sharedPreferences.getString("name",""));

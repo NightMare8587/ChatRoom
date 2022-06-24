@@ -29,6 +29,7 @@ public class JoinRoomActivity extends AppCompatActivity {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     DatabaseReference databaseReference;
     EditText editText;
+    Button exitRoom;
     List<String> time = new ArrayList<>();
     List<String> message = new ArrayList<>();
     List<String> senderID = new ArrayList<>();
@@ -43,6 +44,7 @@ public class JoinRoomActivity extends AppCompatActivity {
         roomTitle = getIntent().getStringExtra("roomTitle");
         joinTime = getIntent().getStringExtra("joinTime");
         recyclerView = findViewById(R.id.joinRoomActivityRecyclerView);
+        exitRoom = findViewById(R.id.exitRoomButton);
         editText = findViewById(R.id.editTextSendMessageJoinRoom);
         send = findViewById(R.id.sendMessageButtonRooms);
         databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomChats");
@@ -65,6 +67,13 @@ public class JoinRoomActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        exitRoom.setOnClickListener(click -> {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomUsers");
+            databaseReference.child(auth.getUid()).removeValue();
+            Toast.makeText(this, "Room exited", Toast.LENGTH_SHORT).show();
+            finish();
         });
 
         send.setOnClickListener(click -> {
