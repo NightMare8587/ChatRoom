@@ -34,6 +34,7 @@ public class PostsFragment extends Fragment {
     List<String> creatorID = new ArrayList<>();
     List<String> title = new ArrayList<>();
     List<String> email = new ArrayList<>();
+    List<String> comments = new ArrayList<>();
     RecyclerView recyclerView;
     List<String> name = new ArrayList<>();
     List<String> upvotes = new ArrayList<>();
@@ -67,9 +68,12 @@ public class PostsFragment extends Fragment {
                         name.add(dataSnapshot.child("userName").getValue(String.class));
                         upvotes.add(dataSnapshot.child("upVotes").getValue(String.class));
                         downvotes.add(dataSnapshot.child("downVotes").getValue(String.class));
+                        if(dataSnapshot.hasChild("comments"))
+                            comments.add(dataSnapshot.child("comments").getChildrenCount() + "");
+                        else
+                            comments.add("0");
                         creatorID.add(dataSnapshot.child("creatorID").getValue(String.class));
                     }
-                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes));
                 }else{
                     postID.clear();
                     title.clear();
@@ -77,8 +81,8 @@ public class PostsFragment extends Fragment {
                     name.clear();
                     email.clear();downvotes.clear();
                     upvotes.clear();
-                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes));
                 }
+                recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes,comments));
             }
 
             @Override
@@ -95,12 +99,12 @@ public class PostsFragment extends Fragment {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                updateChild();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                updateChild();
             }
 
             @Override
@@ -134,9 +138,13 @@ public class PostsFragment extends Fragment {
                         name.add(dataSnapshot.child("userName").getValue(String.class));
                         upvotes.add(dataSnapshot.child("upVotes").getValue(String.class));
                         downvotes.add(dataSnapshot.child("downVotes").getValue(String.class));
+                        if(dataSnapshot.hasChild("comments"))
+                            comments.add(dataSnapshot.child("comments").getChildrenCount() + "");
+                        else
+                            comments.add("0");
                         creatorID.add(dataSnapshot.child("creatorID").getValue(String.class));
                     }
-                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes));
+                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes,comments));
                 }else{
                     postID.clear();
                     title.clear();
@@ -144,7 +152,7 @@ public class PostsFragment extends Fragment {
                     name.clear();
                     email.clear();downvotes.clear();
                     upvotes.clear();
-                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes));
+                    recyclerView.setAdapter(new PostsRecyclerAdapter(postID,creatorID,title,email,name,upvotes,downvotes,comments));
                 }
             }
 
