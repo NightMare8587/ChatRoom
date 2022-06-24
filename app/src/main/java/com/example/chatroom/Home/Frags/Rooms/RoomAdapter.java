@@ -72,6 +72,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.Holder> {
                 intent.putExtra("roomTitle",roomTitle.get(position));
                 intent.putExtra("name",name.get(position));
                 intent.putExtra("email",email.get(position));
+                intent.putExtra("joinTime",time);
                 intent.putExtra("authID",authID.get(position));
                 click.getContext().startActivity(intent);
             }

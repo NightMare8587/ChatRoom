@@ -6,4 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".Home.Frags.Rooms.JoinRoom.JoinRoomActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/joinRoomActivityRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/joinRoomActivityRecyclerView">
+
+        <EditText
+            android:id="@+id/editTextSendMessageJoinRoom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_back"
+            android:hint="Enter Message Here"
+            android:maxLines="200"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/sendMessageButtonRooms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight=".2"
+            android:background="@drawable/create_account_button_back"
+            android:drawableStart="@drawable/ic_baseline_send_24"
+            android:paddingStart="20dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
