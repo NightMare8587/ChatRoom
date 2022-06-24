@@ -26,6 +26,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,7 @@ public class MyAccountFragment extends Fragment {
                                 SharedPreferences sharedPreferences = requireContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.clear().apply();
+                                String UUD = auth.getUid();
                                 auth.signOut();
                                 googleSignInClient.signOut().addOnCompleteListener((Activity) getContext(), new OnCompleteListener<Void>() {
                                     @Override
@@ -76,6 +79,8 @@ public class MyAccountFragment extends Fragment {
 
                                     }
                                 });
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers");
+                                databaseReference.child(UUD).removeValue();
                                 Intent intent = new Intent(requireContext(),MainActivity.class);intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 getActivity().finish();
