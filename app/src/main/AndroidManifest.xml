@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Home.Frags.Rooms.CreateRoomsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Home.Frags.Posts.DetailedPostActivity"
             android:exported="false" />
         <activity
