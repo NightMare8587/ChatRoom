@@ -45,7 +45,7 @@ public class JoinRoomActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.joinRoomActivityRecyclerView);
         editText = findViewById(R.id.editTextSendMessageJoinRoom);
         send = findViewById(R.id.sendMessageButtonRooms);
-        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomUsers").child("RoomChats");
+        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomChats");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,7 +73,7 @@ public class JoinRoomActivity extends AppCompatActivity {
                 return;
             }
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomUsers").child("RoomChats");
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("Rooms").child(roomID).child("RoomChats");
             String time = System.currentTimeMillis() + "";
             databaseReference.child(time).child("message").setValue(editText.getText().toString());
             databaseReference.child(time).child("senderID").setValue(auth.getUid());
