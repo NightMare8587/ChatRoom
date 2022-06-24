@@ -34,6 +34,7 @@ public class HomeScreen extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     DatabaseReference totalOnlineUsersNow;
+    String UUD = auth.getUid();
     Timer timer = new Timer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +124,7 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(auth.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(UUD);
         timer.cancel();
         databaseReference.removeValue();
     }
@@ -132,7 +133,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(auth.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(UUD);
         databaseReference.child("name").setValue(sharedPreferences.getString("name",""));
         databaseReference.child("email").setValue(sharedPreferences.getString("email",""));
         final Handler handler = new Handler();
@@ -170,7 +171,7 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(auth.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference().getRoot().child("OnlineUsers").child(UUD);
         timer.cancel();
         databaseReference.removeValue();
     }
