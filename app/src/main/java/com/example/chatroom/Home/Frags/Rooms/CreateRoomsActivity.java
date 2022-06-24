@@ -48,12 +48,7 @@ public class CreateRoomsActivity extends AppCompatActivity {
                 databaseReference.child(time).child("name").setValue(sharedPreferences.getString("name",""));
                 databaseReference.child(time).child("email").setValue(sharedPreferences.getString("email",""));
                 Toast.makeText(this, "Room Created Successfully", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                },550);
+                new Handler().postDelayed(this::finish,550);
 
             }
         });
